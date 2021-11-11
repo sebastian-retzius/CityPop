@@ -2,11 +2,10 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './Screens/Home'
-import SearchByCountry from './Screens/SearchByCountry';
 import { RootStackParamList } from './Types/RootStackParamList';
-import SearchByCity from './Screens/SearchByCity';
 import Country from './Screens/Country';
 import City from './Screens/City';
+import Search from './Screens/Search';
 
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -23,13 +22,8 @@ export default function App() {
           options={{ headerShown: false }}
         />
         <RootStack.Screen
-          name="SearchByCountry"
-          component={SearchByCountry}
-          options={{ title: 'CityPop' }}
-        />
-        <RootStack.Screen
-          name="SearchByCity"
-          component={SearchByCity}
+          name="Search"
+          component={Search}
           options={{ title: 'CityPop' }}
         />
         <RootStack.Screen

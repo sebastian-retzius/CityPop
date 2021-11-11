@@ -12,11 +12,11 @@ export default function Home({ navigation }: Props) {
       <Text style={styles.title}>CityPop</Text>
       <View>
         <MyButton
-          onPress={() => navigation.navigate('SearchByCity')}
+          onPress={() => navigation.navigate('Search', {type: 'city'})}
           text="SEARCH BY CITY"
         />
         <MyButton
-          onPress={() => navigation.navigate('SearchByCountry')}
+          onPress={() => navigation.navigate('Search', {type: 'country'})}
           text="SEARCH BY COUNTRY"
         />
       </View>
