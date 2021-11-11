@@ -3,5 +3,5 @@ export type RootStackParamList = {
   SearchByCountry: undefined;
   SearchByCity: undefined;
   City: undefined;
-  Country: undefined;
+  Country: {country: string};
 }
