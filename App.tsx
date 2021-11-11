@@ -14,26 +14,33 @@ const RootStack = createNativeStackNavigator<RootStackParamList>();
 export default function App() {
   return (
     <NavigationContainer>
-      <RootStack.Navigator initialRouteName="Home">
+      <RootStack.Navigator
+        initialRouteName="Home"
+      >
         <RootStack.Screen
           name="Home"
           component={Home}
+          options={{ headerShown: false }}
         />
         <RootStack.Screen
           name="SearchByCountry"
           component={SearchByCountry}
+          options={{ title: 'CityPop' }}
         />
         <RootStack.Screen
           name="SearchByCity"
           component={SearchByCity}
+          options={{ title: 'CityPop' }}
         />
         <RootStack.Screen
           name="Country"
           component={Country}
+          options={{ title: 'CityPop' }}
         />
         <RootStack.Screen
           name="City"
           component={City}
+          options={{ title: 'CityPop' }}
         />
       </RootStack.Navigator>
     </NavigationContainer>
