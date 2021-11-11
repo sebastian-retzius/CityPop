@@ -2,7 +2,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, {useState} from 'react'
 import { StyleSheet, View, Text, TextInput, Pressable } from 'react-native'
 import { RootStackParamList } from '../Types/RootStackParamList';
-import MySearchButton from '../Components/MyIconButton';
+import MySearchButton from '../Components/MySearchButton';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'SearchByCountry'>
 
