@@ -15,6 +15,14 @@ export default function App() {
     <NavigationContainer>
       <RootStack.Navigator
         initialRouteName="Home"
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#76D7C4'
+          },
+          headerTintColor: '#fff',
+          headerShadowVisible: false,
+          
+        }}
       >
         <RootStack.Screen
           name="Home"
