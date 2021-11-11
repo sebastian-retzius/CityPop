@@ -1,7 +1,6 @@
 export type RootStackParamList = {
   Home: undefined;
-  SearchByCountry: undefined;
-  SearchByCity: undefined;
-  City: undefined;
+  Search: {type: 'country' | 'city'}
+  City: {city: string};
   Country: {country: string};
 }
