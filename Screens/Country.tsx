@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, ActivityIndicator, StyleSheet, FlatList, ListRenderItem } from 'react-native'
+import { View, Text, ActivityIndicator, StyleSheet, FlatList, ListRenderItem, Modal, Pressable } from 'react-native'
 import { RootStackParamList } from '../Types/RootStackParamList';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import MyButton from '../Components/MyButton';
-import {getCode, getName} from 'country-list';
+import { getCode, getName } from 'country-list';
+import ErrorModal from '../Components/ErrorModal';
 
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Country'>
@@ -24,7 +25,7 @@ export default function Country({ route, navigation }: Props) {
     })
       .then((response) => response.json())
       .then((json) => {
-        if (json.totalResultsCount===0)
+        if (json.totalResultsCount === 0)
           setError(true)
         setData(json.geonames)
         setLoading(false)
@@ -36,30 +37,38 @@ export default function Country({ route, navigation }: Props) {
 
   if (loading) {
     return (
-    <View style={styles.container}>
-      <ActivityIndicator color='#2471A3' size='large' />
-    </View>)
+      <View style={styles.loadcontainer}>
+        <ActivityIndicator color='#2471A3' size='large' />
+      </View>)
   }
-    
-  const renderItem: ListRenderItem<ICity> = ({item}) => (
-    <MyButton key={item.name} onPress={()=>navigation.navigate('City', {city: item.name, population: item.population})} text={item.name}></MyButton>
+
+  const renderItem: ListRenderItem<ICity> = ({ item }) => (
+    <MyButton key={item.name} onPress={() => navigation.navigate('City', { city: item.name, population: item.population })} text={item.name}></MyButton>
   )
 
   return (
     <View style={styles.container}>
       {error ?
-        <View> 
-          <Text style={{color:'#fff'}}> No search for countries are matching your search term: {route.params.country}. Make sure to use the ISO country name. </Text>
-        </View>
+        <ErrorModal
+          onRequestClose={()=>{ 
+            setError(false)
+            navigation.navigate('Search', {type: 'country'})
+           }}
+          visible={error}
+          searchTerm={route.params.country}
+          type='country'
+        />
         :
-        <View>          
+        <View style={{ flex: 1 }}>
           <Text style={styles.title}> {route.params.country} </Text>
-          <FlatList
-            data={data}
-            renderItem={renderItem}
-            keyExtractor={(item)=>item.name}
-            style={{padding: 10, marginBottom:100}}
-          />  
+          <View style={{ flex: 1 }}>
+            <FlatList
+              data={data}
+              renderItem={renderItem}
+              keyExtractor={(item) => item.name}
+              style={{ marginTop: 20, paddingLeft: 5, paddingRight: 5 }}
+            />
+          </View>
         </View>
       }
     </View>
@@ -72,12 +81,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#76D7C4',
     justifyContent: 'flex-start',
     padding: 20,
+    paddingBottom: 0,
+  },
+  loadcontainer: {
+    flex: 1,
+    backgroundColor: '#76D7C4',
+    justifyContent: 'center',
+    padding: 20,
   },
   title: {
     fontWeight: "bold",
     fontSize: 60,
-    
     textAlign: 'center',
     color: '#fff',
-  }
+  },
 });
