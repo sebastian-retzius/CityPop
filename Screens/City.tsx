@@ -1,19 +1,19 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, ActivityIndicator } from 'react-native'
+import ErrorModal from '../Components/ErrorModal'
 import { RootStackParamList } from '../Types/RootStackParamList'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'City'>
 
 
-export default function City({ route }: Props) {
+export default function City({ route, navigation }: Props) {
   const [population, setPopulation] = useState(route.params.population)
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     if (!population) {
-      console.log("hej")
       fetch(`http://api.geonames.org/searchJSON?name_equals=${(route.params.city)}&maxRows=1&orderby=population&featureClass=P&username=WeKnowIt`, {
         method: 'GET'
       })
@@ -21,19 +21,19 @@ export default function City({ route }: Props) {
         .then((json) => {
           if (json.totalResultsCount === 0)
             setError(true)
-          setPopulation(json.geonames[0].population)
-
+          if (json.geonames[0])
+            setPopulation(json.geonames[0].population)
+          setLoading(false)
         })
         .catch(error => {
           console.log(error)
         })
     }
-    setLoading(false)
   }, [])
 
   if (loading) {
     return (
-      <View style={styles.container}>
+      <View style={styles.loadcontainer}>
         <ActivityIndicator color='#1A5276' size='large' />
       </View>)
   }
@@ -41,9 +41,15 @@ export default function City({ route }: Props) {
   return (
     <View style={styles.container}>
       {error ?
-        <View>
-          <Text style={{ color: '#fff' }}>No search for citys are matching your search term: {route.params.city}. Make sure to use the ISO city name. </Text>
-        </View>
+        <ErrorModal
+        onRequestClose={()=>{ 
+          setError(false)
+          navigation.navigate('Search', {type: 'city'})
+         }}
+        visible={error}
+        searchTerm={route.params.city}
+        type='city'
+      />
         :
         <View>
           <Text style={styles.title}>{route.params.city}</Text>
@@ -62,6 +68,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#76D7C4',
     justifyContent: 'flex-start',
+    padding: 20,
+  },
+  loadcontainer: {
+    flex: 1,
+    backgroundColor: '#76D7C4',
+    justifyContent: 'center',
     padding: 20,
   },
   title: {

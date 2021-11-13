@@ -19,8 +19,10 @@ export default function Search({ navigation, route }: Props) {
         placeholder={`Enter a ${route.params.type}`}
       />
       <MySearchButton onPress={route.params.type == 'country' ?
-        () => navigation.navigate('Country', { country: input }) :
-        () => navigation.navigate('City', { city: input })} />
+        () => { navigation.navigate('Country', { country: input }) 
+                setInput('')} :
+        () => { navigation.navigate('City', { city: input })
+                setInput('')} } />
     </View>
   )
 }
