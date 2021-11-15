@@ -19,7 +19,7 @@ export default function City({ route, navigation }: Props) {
 
   useEffect(() => {
     if (!population) {
-      fetch(`http://api.geonames.org/searchJSON?name_equals=${(route.params.city)}&maxRows=1&featureClass=P&username=WeKnowIt`, {
+      fetch(`http://api.geonames.org/searchJSON?name_equals=${(route.params.city.trim())}&maxRows=1&featureClass=P&username=WeKnowIt`, {
         method: 'GET'
       })
         .then((response) => response.json())

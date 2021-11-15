@@ -26,7 +26,7 @@ export default function Country({ route, navigation }: Props) {
   }
 
   useEffect(() => {
-    fetch(`http://api.geonames.org/searchJSON?country=${getCode(route.params.country)}&maxRows=1000&orderby=population&featureClass=P&username=WeKnowIt`, {
+    fetch(`http://api.geonames.org/searchJSON?country=${getCode(route.params.country.trim())}&maxRows=1000&orderby=population&featureClass=P&username=WeKnowIt`, {
       method: 'GET'
     })
       .then((response) => response.json())
