@@ -31,7 +31,7 @@ Then go into the created CityPop folder and run npm install to install all requi
 
 ## Debugging
 
-For debugging purposes i recommend using the [Expo Go](https://expo.dev/client) app that can be downloaded in app store or google play. To start debugging with Expo Go just run
+For debugging purposes I recommend using the [Expo Go](https://expo.dev/client) app that can be downloaded in app store or google play. To start debugging with Expo Go just run
 
 ```
   npm start
