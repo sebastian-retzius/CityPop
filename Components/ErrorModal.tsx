@@ -8,6 +8,15 @@ type Props = {
   type: 'country' | 'city';
 }
 
+/**
+ * Error modal component that is to be displayed when no searches are available for the search term
+ * 
+ * @param {()=>void} onRequestClose - function too call when closing Errormodal
+ * @param {boolean} visible - boolean to determine if modal shall be visible or not
+ * @param {string} searchTerm - string that is the search term
+ * @param {'country' | 'city'} - which kind of search has been performed
+ * @returns {ErrorModal} Error modal
+ */
 export default function ErrorModal({onRequestClose, visible, searchTerm, type}: Props) {
   return (
     <Modal

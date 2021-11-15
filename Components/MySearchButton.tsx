@@ -7,6 +7,12 @@ type Props = {
   onPress: () => void;
 }
 
+/**
+ * MySearchButton component that is the styled searchbutton for CityPop
+ * 
+ * @param {()=>void} onPress - function that happens on press event
+ * @returns {MySearchButton} MySearchButton component 
+ */
 export default function MySearchButton({ onPress }: Props) {
   return (
     <Pressable

@@ -7,7 +7,11 @@ import NumberFormat from 'react-number-format';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'City'>
 
-
+/**
+ * City screen that displays the information about a City
+ *
+ * @returns {City} City Screen
+ */
 export default function City({ route, navigation }: Props) {
   const [population, setPopulation] = useState(route.params.population)
   const [error, setError] = useState(false)

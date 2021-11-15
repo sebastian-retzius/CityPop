@@ -6,6 +6,11 @@ import MyButton from '../Components/MyButton';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>
 
+/**
+ * Home component that displays the homescreen with buttons that lead to search page
+ * 
+ * @returns {Home} Home component 
+ */
 export default function Home({ navigation }: Props) {
   return (
     <View style={styles.container}>

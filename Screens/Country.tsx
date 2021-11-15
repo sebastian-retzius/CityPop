@@ -9,6 +9,12 @@ import ErrorModal from '../Components/ErrorModal';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Country'>
 
+
+/**
+ * Country screen that displays the city list for a country
+ *
+ * @returns {Country} Country Screen
+ */
 export default function Country({ route, navigation }: Props) {
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState([])

@@ -6,6 +6,12 @@ import MySearchButton from '../Components/MySearchButton';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Search'>
 
+
+/**
+ * Search component that displays the search page where you can search for city or country
+ *
+ * @returns {Search} Search component
+ */
 export default function Search({ navigation, route }: Props) {
   const [input, setInput] = useState('')
 
