@@ -68,4 +68,4 @@ When building for android you can also choose wether to build an .apk file or an
 ``` 
 When you have started the build Expo will prompt you to log in and then to choose if you would like expor to generate a Keystore for you or if you want to upload it yourself.
 
-Then Expo will build your app for you and you can download it from your [Expo page](https://expo.dev/). 
+Then Expo will build your app for you and you can download it from your [Expo page](https://expo.dev/). If you have any problems check this link that explains the [Expo build process](https://docs.expo.dev/classic/building-standalone-apps/)
