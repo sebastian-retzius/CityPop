@@ -1,6 +1,6 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react'
-import { StyleSheet, View, Text, Button, Pressable } from 'react-native'
+import { StyleSheet, View, Text } from 'react-native'
 import { RootStackParamList } from '../Types/RootStackParamList';
 import MyButton from '../Components/MyButton';
 
