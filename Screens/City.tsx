@@ -85,12 +85,13 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: "bold",
-    fontSize: 60,
+    fontSize: 45,
     textAlign: 'center',
     color: '#fff',
+    marginTop: 60,
+    marginBottom: 140,
   },
   popview: {
-    marginTop: 100,
     padding: 20,
     backgroundColor: '#1A5276',
     borderRadius: 10,

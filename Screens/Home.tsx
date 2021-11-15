@@ -38,9 +38,9 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: "bold",
-    fontSize: 60,
-    marginTop: 200,
-    marginBottom: 100,
+    fontSize: 45,
+    marginTop: 160,
+    marginBottom: 130,
     textAlign: 'center',
     color: '#fff',
   }

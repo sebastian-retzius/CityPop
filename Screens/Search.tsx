@@ -50,11 +50,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: "bold",
-    fontSize: 40,
-    marginTop: 200,
-    marginBottom: 100,
+    fontSize: 45,
+    marginTop: 55,
+    marginBottom: 110,
     textAlign: 'center',
     color: '#fff',
+    textTransform: 'uppercase'
   },
   input: {
     backgroundColor: '#fff',
