@@ -1,11 +1,16 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react'
-import { StyleSheet, View, Text, Button, Pressable } from 'react-native'
+import { StyleSheet, View, Text } from 'react-native'
 import { RootStackParamList } from '../Types/RootStackParamList';
 import MyButton from '../Components/MyButton';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>
 
+/**
+ * Home component that displays the homescreen with buttons that lead to search page
+ * 
+ * @returns {Home} Home component 
+ */
 export default function Home({ navigation }: Props) {
   return (
     <View style={styles.container}>

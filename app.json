@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "WeKnowIt",
-    "slug": "WeKnowIt",
+    "name": "CityPop",
+    "slug": "citypop",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/wkit_logo_square.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/wkit_logo_white.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#76D7C4"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -17,16 +17,20 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.weknowit.citypop",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/wkit_logo_square.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.weknowit.citypop",
+      "versionCode": 1
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/wkit_logo_square.png"
     }
   }
 }

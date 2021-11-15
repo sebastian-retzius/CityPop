@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, ActivityIndicator, StyleSheet, FlatList, ListRenderItem, Modal, Pressable } from 'react-native'
+import { View, Text, ActivityIndicator, StyleSheet, FlatList, ListRenderItem } from 'react-native'
 import { RootStackParamList } from '../Types/RootStackParamList';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import MyButton from '../Components/MyButton';
-import { getCode, getName } from 'country-list';
+import { getCode } from 'country-list';
 import ErrorModal from '../Components/ErrorModal';
 
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Country'>
 
+
+/**
+ * Country screen that displays the city list for a country
+ *
+ * @returns {Country} Country Screen
+ */
 export default function Country({ route, navigation }: Props) {
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState([])
@@ -20,7 +26,7 @@ export default function Country({ route, navigation }: Props) {
   }
 
   useEffect(() => {
-    fetch(`http://api.geonames.org/searchJSON?country=${getCode(route.params.country)}&maxRows=10&orderby=population&featureClass=P&username=WeKnowIt`, {
+    fetch(`http://api.geonames.org/searchJSON?country=${getCode(route.params.country)}&maxRows=1000&orderby=population&featureClass=P&username=WeKnowIt`, {
       method: 'GET'
     })
       .then((response) => response.json())
@@ -35,16 +41,16 @@ export default function Country({ route, navigation }: Props) {
       })
   }, [])
 
+  const renderItem: ListRenderItem<ICity> = ({ item }) => (
+    <MyButton key={item.name} onPress={() => navigation.navigate('City', { city: item.name, population: item.population })} text={item.name}></MyButton>
+  )
+
   if (loading) {
     return (
       <View style={styles.loadcontainer}>
         <ActivityIndicator color='#2471A3' size='large' />
       </View>)
   }
-
-  const renderItem: ListRenderItem<ICity> = ({ item }) => (
-    <MyButton key={item.name} onPress={() => navigation.navigate('City', { city: item.name, population: item.population })} text={item.name}></MyButton>
-  )
 
   return (
     <View style={styles.container}>
@@ -65,8 +71,9 @@ export default function Country({ route, navigation }: Props) {
             <FlatList
               data={data}
               renderItem={renderItem}
-              keyExtractor={(item) => item.name}
-              style={{ marginTop: 20, paddingLeft: 5, paddingRight: 5 }}
+              keyExtractor={(item, index) => index.toString()}
+              showsVerticalScrollIndicator={false}
+              style={{ marginTop: 20, paddingLeft: 10, paddingRight: 10 }}
             />
           </View>
         </View>
@@ -91,7 +98,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: "bold",
-    fontSize: 60,
+    fontSize: 30,
     textAlign: 'center',
     color: '#fff',
   },

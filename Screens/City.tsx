@@ -3,10 +3,15 @@ import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, ActivityIndicator } from 'react-native'
 import ErrorModal from '../Components/ErrorModal'
 import { RootStackParamList } from '../Types/RootStackParamList'
+import NumberFormat from 'react-number-format';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'City'>
 
-
+/**
+ * City screen that displays the information about a City
+ *
+ * @returns {City} City Screen
+ */
 export default function City({ route, navigation }: Props) {
   const [population, setPopulation] = useState(route.params.population)
   const [error, setError] = useState(false)
@@ -14,7 +19,7 @@ export default function City({ route, navigation }: Props) {
 
   useEffect(() => {
     if (!population) {
-      fetch(`http://api.geonames.org/searchJSON?name_equals=${(route.params.city)}&maxRows=1&orderby=population&featureClass=P&username=WeKnowIt`, {
+      fetch(`http://api.geonames.org/searchJSON?name_equals=${(route.params.city)}&maxRows=1&featureClass=P&username=WeKnowIt`, {
         method: 'GET'
       })
         .then((response) => response.json())
@@ -28,6 +33,8 @@ export default function City({ route, navigation }: Props) {
         .catch(error => {
           console.log(error)
         })
+    } else {
+      setLoading(false)
     }
   }, [])
 
@@ -55,7 +62,7 @@ export default function City({ route, navigation }: Props) {
           <Text style={styles.title}>{route.params.city}</Text>
           <View style={styles.popview}>
             <Text style={styles.subtitle}>POPULATION</Text>
-            <Text style={styles.poptitle} >{population}</Text>
+            <NumberFormat value={population} displayType='text' thousandSeparator={' '} renderText={value => <Text style={styles.poptitle}>{value}</Text>}/>
           </View>
         </View>
       }

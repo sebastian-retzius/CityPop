@@ -6,6 +6,12 @@ import MySearchButton from '../Components/MySearchButton';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Search'>
 
+
+/**
+ * Search component that displays the search page where you can search for city or country
+ *
+ * @returns {Search} Search component
+ */
 export default function Search({ navigation, route }: Props) {
   const [input, setInput] = useState('')
 
@@ -19,10 +25,18 @@ export default function Search({ navigation, route }: Props) {
         placeholder={`Enter a ${route.params.type}`}
       />
       <MySearchButton onPress={route.params.type == 'country' ?
-        () => { navigation.navigate('Country', { country: input }) 
-                setInput('')} :
-        () => { navigation.navigate('City', { city: input })
-                setInput('')} } />
+        () => { if (input){
+                navigation.navigate('Country', { country: input }) 
+                setInput('')
+              } else {
+                alert('Add a search input')
+              }} :
+        () => { if (input){
+                navigation.navigate('City', { city: input })
+                setInput('')
+              } else {
+                alert('Add a search input')
+              }}} />
     </View>
   )
 }

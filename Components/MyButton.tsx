@@ -1,11 +1,18 @@
 import React from 'react'
-import { View, Text, Pressable, StyleSheet } from 'react-native'
+import { Text, Pressable, StyleSheet } from 'react-native'
 
 type Props = {
   onPress: () => void;
   text: string;
 }
 
+/**
+ * MyButton component that is the styled button for CityPop
+ * 
+ * @param {()=>void} onPress - function that happens on press event
+ * @param {string} text - text to be displayed in button
+ * @returns {MyButton} MyButton component
+ */
 export default function MyButton({ onPress, text }: Props) {
   return (
     <Pressable
